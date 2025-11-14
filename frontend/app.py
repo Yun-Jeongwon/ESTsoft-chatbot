@@ -49,8 +49,14 @@ def render_chat() -> None:
 
 def handle_submission() -> None:
     with st.form("chat-form", clear_on_submit=True):
-        user_query = st.text_input("질문을 입력하세요", key="query_input")
-        submitted = st.form_submit_button("전송")
+        input_col, button_col = st.columns([5, 1])
+        user_query = input_col.text_input(
+        label="질문을 입력하세요",
+        key="query_input",
+        placeholder="질문을 입력하세요",
+        label_visibility="collapsed",
+        )
+        submitted = button_col.form_submit_button("전송")
 
     if not submitted:
         return
