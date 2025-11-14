@@ -34,9 +34,26 @@ def post_query(query: str) -> Dict[str, Any]:
 
 def init_page() -> None:
     st.set_page_config(page_title="ESTsoft Perso.ai 챗봇", page_icon="💬")
-    st.title("💬 Perso.ai 챗봇")
-    st.subheader(": Perso.ai 바이브코딩(미래내일일경험 인턴십) 과제")
-
+    header = st.container()
+    header.title("💬 Perso.ai 챗봇")
+    header.subheader(": Perso.ai 바이브코딩(미래내일일경험 인턴십) 과제")
+    header.write("""<div class='fixed-header'/>""", unsafe_allow_html=True)
+    st.markdown(
+    """
+    <style>
+        div[data-testid="stVerticalBlock"] div:has(div.fixed-header) {
+            position: sticky;
+            top: 2.875rem;
+            background-color: white;
+            z-index: 999;
+        }
+        .fixed-header {
+            border-bottom: 1px solid black;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+    )
     if "messages" not in st.session_state:
         st.session_state.messages = []
 
@@ -48,17 +65,9 @@ def render_chat() -> None:
 
 
 def handle_submission() -> None:
-    with st.form("chat-form", clear_on_submit=True):
-        input_col, button_col = st.columns([5, 1])
-        user_query = input_col.text_input(
-        label="질문을 입력하세요",
-        key="query_input",
-        placeholder="질문을 입력하세요",
-        label_visibility="collapsed",
-        )
-        submitted = button_col.form_submit_button("전송")
+    user_query = st.chat_input("질문을 입력하세요")
 
-    if not submitted:
+    if user_query is None:
         return
 
     cleaned_query = user_query.strip()
@@ -67,6 +76,9 @@ def handle_submission() -> None:
         return
 
     st.session_state.messages.append({"role": "user", "content": cleaned_query})
+    
+    with st.chat_message("user"):
+        st.markdown(cleaned_query)
 
     try:
         with st.spinner("답변 생성 중..."):
@@ -88,12 +100,17 @@ def handle_submission() -> None:
 
     st.session_state.messages.append({"role": "assistant", "content": answer})
 
+    with st.chat_message("assistant"):
+        st.markdown(answer)
+
+
 
 def main() -> None:
     init_page()
-    handle_submission()
     render_chat()
-
+    handle_submission()
 
 if __name__ == "__main__":
     main()
+
+    
