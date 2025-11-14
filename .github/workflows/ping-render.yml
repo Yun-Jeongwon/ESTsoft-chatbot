@@ -1,0 +1,16 @@
+name: Ping Render Health
+
+on:
+  schedule:
+    - cron: "0 * * * *"
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Ping Render (ignore errors)
+        run: |
+          echo "Pinging https://estsoft-chatbot.onrender.com/health ..."
+          curl -sS https://estsoft-chatbot.onrender.com/health || echo "Ping failed, but ignoring."
