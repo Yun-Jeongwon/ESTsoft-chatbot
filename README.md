@@ -1,6 +1,7 @@
 # 📌 ESTsoft Perso.ai Chatbot
 ### Perso.ai 바이브코딩 (미래내일일경험 인턴십) 과제
 <https://estsoft-chatbot.streamlit.app/>
+
 FastAPI 기반 백엔드와 Streamlit 프론트엔드로 구성된 챗봇입니다. OpenAI 임베딩을 활용해 생성한 벡터를 Qdrant 벡터 데이터베이스에 저장하고, 사용자 질의에 대해 유사도 검색을 수행한 뒤 검증된 답변을 제공합니다.
 
 ## 1. 사용 기술 스택
