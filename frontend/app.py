@@ -8,7 +8,7 @@ from typing import Any, Dict
 import requests
 import streamlit as st
 
-API_ENDPOINT = "http://localhost:8000/query"
+API_ENDPOINT = "https://estsoft-chatbot.onrender.com"
 DEFAULT_TIMEOUT = 30
 
 
