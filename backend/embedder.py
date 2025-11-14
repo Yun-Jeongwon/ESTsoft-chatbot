@@ -25,7 +25,7 @@ class Embedder:
         self._model = settings.embedding_model
         self._client = client or OpenAI(api_key=settings.openai_api_key)
         self._max_retries = 3
-        self._retry_delay = 1.0
+        self._retry_delay = 2.0
 
     def embed(self, text: str) -> List[float]:
         """Return the embedding vector for the supplied text."""

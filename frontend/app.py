@@ -9,7 +9,7 @@ import requests
 import streamlit as st
 
 API_ENDPOINT = "https://estsoft-chatbot.onrender.com/query"
-DEFAULT_TIMEOUT = 60
+DEFAULT_TIMEOUT = 35
 
 
 def post_query(query: str) -> Dict[str, Any]:
