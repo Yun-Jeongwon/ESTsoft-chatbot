@@ -18,3 +18,5 @@ data/*.xlsx
 
 # Streamlit cache
 frontend/.streamlit/
+
+.devcontainer/
